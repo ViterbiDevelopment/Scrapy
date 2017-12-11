@@ -2,5 +2,9 @@
 learning Scrapy
 
 
-#cd tutorial
-#python quotes
+### Build
+```
+# cd tutorial
+# python quotes
+
+```
