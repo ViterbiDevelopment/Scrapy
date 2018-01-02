@@ -8,4 +8,7 @@
 
 class TutorialPipeline(object):
     def process_item(self, item, spider):
+    	# babyname = detail.encode('utf-8').split('/')[2].split('.')[0]
+        item["name"] = item["name"].encode('utf-8').split('/')[2].split('.')[0]
+        print item["name"]
         return item

@@ -1,6 +1,6 @@
 import scrapy
 import os
-
+from tutorial.items import TutorialItem
 
 class QuotesSpider(scrapy.Spider):
     name = "quotes"
@@ -19,12 +19,14 @@ class QuotesSpider(scrapy.Spider):
         #col-xs-12. //div[@class="col-xs-12"]. extract_first()
         file = response.url.split('/')[4]
         filename = file.split('_')[0]
-        print filename
         f = open(filename+'.text','a')
         for sel in response.xpath('//div[@class="main_"]'):
-        	for name in sel.xpath('.//div[@class="col-xs-12"]'):
-        		sel = name.xpath('./a[contains(@href,"html")]/@href').extract()
-        		for detail in sel:
-        			babyname = detail.encode('utf-8').split('/')[2].split('.')[0]
-        			f.write(babyname + '\n')
+            for name in sel.xpath('.//div[@class="col-xs-12"]'):
+                selName = name.xpath('./a[contains(@href,"html")]/@href').extract()
+                for detail in selName:
+                    babyname = detail.encode('utf-8').split('/')[2].split('.')[0]
+                    f.write(babyname + '\n')
+                    model = TutorialItem()
+                    model["name"] = detail
+                    yield model
         f.close()
