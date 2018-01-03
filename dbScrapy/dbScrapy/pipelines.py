@@ -6,9 +6,6 @@
 # See: http://doc.scrapy.org/en/latest/topics/item-pipeline.html
 
 
-class TutorialPipeline(object):
+class DbscrapyPipeline(object):
     def process_item(self, item, spider):
-        # babyname = detail.encode('utf-8').split('/')[2].split('.')[0]
-        item["name"] = item["name"].encode('utf-8').split('/')[2].split('.')[0]
-        print item["name"]
         return item
